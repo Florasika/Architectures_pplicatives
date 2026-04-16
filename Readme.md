@@ -21,6 +21,8 @@ Il permet de :
 - Tests unitaires avec Jest (Mocks & Stubs)
 - Persistance simple via JSON
 
+## Diagramme UML
+![alt text](uml_class.drawio.png)
 
 ## Architecture du projet
 
