@@ -15,3 +15,31 @@ test("doit détecter une fraude", () => {
 
   expect(resultat).toBe(true);
 });
+
+
+test("doit calculer une distance cohérente", () => {
+  const paris = new CoordonneesGPS(48.8566, 2.3522);
+  const londres = new CoordonneesGPS(51.5074, -0.1278);
+
+  const distance = paris.distanceVers(londres);
+
+  expect(distance).toBeGreaterThan(300);
+  expect(distance).toBeLessThan(400);
+});
+
+test("MOCK - doit appeler distanceVers lors de la détection de fraude", () => {
+  // MOCK : on espionne la méthode distanceVers
+  const mockLieu = {
+    distanceVers: jest.fn().mockReturnValue(200) // retourne 200km
+  };
+
+  const transactions = Array.from({ length: 6 }, () => ({
+    dateAchat: new Date(),
+    lieu: mockLieu
+  }));
+
+  FraudeService.detecterFraude(transactions);
+
+  // Vérifie que distanceVers a bien été appelée
+  expect(mockLieu.distanceVers).toHaveBeenCalled();
+});

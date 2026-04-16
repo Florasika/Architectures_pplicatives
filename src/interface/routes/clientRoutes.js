@@ -9,5 +9,6 @@ const {
 
 router.post('/clients', creerClient);
 router.post('/clients/:idClient/transactions', ajouterTransaction);
+router.get('/clients/:idClient', getClient);
 
 module.exports = router;

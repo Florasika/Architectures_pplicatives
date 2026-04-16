@@ -5,7 +5,7 @@ const StatutVIP = require('../../domain/valueObjects/StatutVIP');
 const CoordonneesGPS = require('../../domain/valueObjects/CoordonneesGPS');
 
 // Fake DB (temporaire)
-const clients = [];
+const clientRepository = require('../../infrastructure/repositories/ClientRepository');
 
 function creerClient(req, res) {
   try {
@@ -17,7 +17,7 @@ function creerClient(req, res) {
       statutActuel: new StatutVIP('BRONZE')
     });
 
-    clients.push(client);
+    clientRepository.save(client);
 
     res.json(client);
   } catch (err) {
@@ -30,7 +30,7 @@ function ajouterTransaction(req, res) {
     const { idClient } = req.params;
     const { montant, latitude, longitude } = req.body;
 
-    const client = clients.find(c => c.idClient == idClient);
+    const client = clientRepository.findById(idClient);
 
     if (!client) {
       return res.status(404).json({ error: "Client non trouvé" });
@@ -55,7 +55,20 @@ function ajouterTransaction(req, res) {
   }
 }
 
+function getClient(req, res) {
+  const { idClient } = req.params;
+
+  const client = clientRepository.findById(idClient);
+
+  if (!client) {
+    return res.status(404).json({ error: "Client non trouvé" });
+  }
+
+  res.json(client);
+}
+
 module.exports = {
   creerClient,
-  ajouterTransaction
+  ajouterTransaction,
+  getClient
 };

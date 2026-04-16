@@ -91,4 +91,15 @@ describe("StatutService", () => {
     expect(resultat.niveau).toBe("GOLD");
   });
 
+  test("STUB - doit retourner GOLD avec des transactions stubées", () => {
+    // STUB : faux objet Transaction qui retourne des valeurs fixes
+    const transactionStub = {
+      montant: 2500,
+      dateAchat: new Date() // valeur fixe, pas de vraie logique
+    };
+
+    const resultat = StatutService.calculerStatut([transactionStub], new Date());
+    expect(resultat.niveau).toBe("GOLD");
+  });
+
 });

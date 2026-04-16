@@ -6,6 +6,7 @@ const filePath = path.join(__dirname, "../../../data/transactions.json");
 class TransactionRepository {
 
   static getAll() {
+    if (!fs.existsSync(filePath)) return [];
     const data = fs.readFileSync(filePath);
     return JSON.parse(data);
   }
