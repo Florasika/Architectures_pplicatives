@@ -4,8 +4,9 @@ console.log("ROUTES CHARGÉES");
 
 const {
   creerClient,
-  ajouterTransaction
-} = require('../controllers/clientControllers');
+  ajouterTransaction,
+  getClient
+} = require('./controllers/clientController');
 
 router.post('/clients', creerClient);
 router.post('/clients/:idClient/transactions', ajouterTransaction);

@@ -3,6 +3,8 @@ const CompteClient = require('../../domain/entities/CompteClient');
 const Transaction = require('../../domain/entities/Transaction');
 const StatutVIP = require('../../domain/valueObjects/StatutVIP');
 const CoordonneesGPS = require('../../domain/valueObjects/CoordonneesGPS');
+const path = require('path');
+const PATH = path.join(__dirname, '../../data/clients.json');
 
 // Fake DB (temporaire)
 const clientRepository = require('../../infrastructure/repositories/ClientRepository');
@@ -44,6 +46,7 @@ function ajouterTransaction(req, res) {
     });
 
     traiterTransaction(client, transaction);
+    clientRepository.save(client);
 
     res.json({
       message: "Transaction ajoutée",

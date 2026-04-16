@@ -19,4 +19,4 @@ class TransactionRepository {
 
 }
 
-module.exports = TransactionRepository;
+module.exports = new TransactionRepository();
