@@ -1,11 +1,11 @@
+const PointDetail = require('../valueObjects/PointDetail');
+
 class CompteClient {
   constructor({ idClient, nom, statutActuel, estGele = false }) {
     this.idClient = idClient;
     this.nom = nom;
     this.statutActuel = statutActuel;
-
     this.estGele = estGele;
-
     this.transactions = [];
     this.points = [];
   }
@@ -17,9 +17,7 @@ class CompteClient {
 
     this.transactions.push(transaction);
 
-    // Générer des points à partir de la transaction
     const pointsGeneres = transaction.calculerPoints(this.statutActuel);
-
     this.points.push(...pointsGeneres);
   }
 
@@ -38,23 +36,28 @@ class CompteClient {
       .filter(p => p.estValide(dateActuelle) && p.valeur > 0)
       .sort((a, b) => a.dateAcquisition - b.dateAcquisition);
 
-    // On reconstruit le tableau de points plutôt que de muter
     const nouveauxPoints = [...this.points];
+
     for (let point of pointsValides) {
       if (pointsRestants <= 0) break;
+
       const idx = nouveauxPoints.indexOf(point);
-      if (point.valeur <= pointsRestants) {
-        pointsRestants -= point.valeur;
-        nouveauxPoints.splice(idx, 1); // supprime le point épuisé
-      } else {
-        // Remplace par un nouveau PointDetail avec la valeur réduite
+      const resteValeur = point.valeur - pointsRestants;
+
+      if (resteValeur > 0) {
+        // Il reste de la valeur dans ce lot : on le remplace par un lot réduit
         nouveauxPoints[idx] = new PointDetail({
-          valeur: point.valeur - pointsRestants,
+          valeur: resteValeur,
           dateAcquisition: point.dateAcquisition
         });
         pointsRestants = 0;
+      } else {
+        // Le lot est entièrement consommé : on le supprime
+        nouveauxPoints.splice(idx, 1);
+        pointsRestants -= point.valeur;
       }
     }
+
     this.points = nouveauxPoints;
   }
 

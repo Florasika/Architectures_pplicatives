@@ -1,3 +1,4 @@
+const { StrategieBronze, StrategieSilver, StrategieGold } = require('../strategies/StrategiePoints');
 class StatutVIP {
   constructor(niveau) {
     const niveauxValides = ['BRONZE', 'SILVER', 'GOLD'];
@@ -9,7 +10,7 @@ class StatutVIP {
     this.niveau = niveau;
   }
 
-  get multiplicateurPoint() {
+  /*get multiplicateurPoint() {
     switch (this.niveau) {
       case 'BRONZE':
         return 1;
@@ -19,6 +20,15 @@ class StatutVIP {
         return 3;
       default:
         return 1;
+    }
+  }*/
+
+
+  get strategie() {
+    switch (this.niveau) {
+      case 'GOLD': return new StrategieGold();
+      case 'SILVER': return new StrategieSilver();
+      default: return new StrategieBronze();
     }
   }
 }

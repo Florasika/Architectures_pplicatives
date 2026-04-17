@@ -1,8 +1,13 @@
 #  Architecture Applicative – Projet DDD (Fraude & Statut Client VIP)
 
+Auteur: NOUDOUKOU FLORA
+FORMATION: EPSI M1 SYSTEMES D'INFORMATION
+MATIERE: ARCHITECTURE APLLICATIVE
+
 ## Description
 
 Ce projet est une application backend développée en **Node.js (Express)** suivant les principes de **Domain Driven Design (DDD)** et de **Clean Architecture**.
+Projet réalisé dans un contexte pédagogique pour la mise en pratique de l’architecture applicative avancée.
 
 Il permet de :
 - Gérer des clients et leurs transactions
@@ -106,7 +111,3 @@ Une transaction est considérée comme suspecte si :
 - Containerisation avec Docker
 - Authentification JWT
 - Logging avancé
-
-♣ Auteur
-
-Projet réalisé dans un contexte pédagogique pour la mise en pratique de l’architecture applicative avancée.

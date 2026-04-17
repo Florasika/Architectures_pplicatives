@@ -6,7 +6,7 @@ const {
   creerClient,
   ajouterTransaction,
   getClient
-} = require('./controllers/clientController');
+} = require('../controllers/clientController');
 
 router.post('/clients', creerClient);
 router.post('/clients/:idClient/transactions', ajouterTransaction);

@@ -1,8 +1,10 @@
 const fs = require('fs');
+const path = require('path');
 const TransactionRepository = require("../src/infrastructure/repositories/TransactionRepository");
+const PATH = '../data/transactions.json';
 
 beforeEach(() => {
-  fs.writeFileSync('./data/transactions.json', '[]');
+  fs.writeFileSync(path.join(__dirname, PATH), '[]');
 });
 
 test("doit sauvegarder une transaction", () => {

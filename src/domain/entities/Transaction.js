@@ -11,7 +11,8 @@ class Transaction {
   calculerPoints(statutVIP) {
     const multiplicateur = statutVIP.multiplicateurPoint;
 
-    const points = Math.floor(this.montant * multiplicateur);
+    //const points = Math.floor(this.montant * multiplicateur);
+    const points = statutVIP.strategie.calculerPoints(this.montant);
 
     return [
       new PointDetail({

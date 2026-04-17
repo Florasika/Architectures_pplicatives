@@ -3,11 +3,11 @@ const CompteClient = require('../../domain/entities/CompteClient');
 const Transaction = require('../../domain/entities/Transaction');
 const StatutVIP = require('../../domain/valueObjects/StatutVIP');
 const CoordonneesGPS = require('../../domain/valueObjects/CoordonneesGPS');
-const path = require('path');
-const PATH = path.join(__dirname, '../../data/clients.json');
+//const path = require('path');
+//const PATH = path.join(__dirname, '../../data/clients.json');
 
 // Fake DB (temporaire)
-const clientRepository = require('../../infrastructure/repositories/ClientRepository');
+const clientRepository = require('../../infrastructure/repositories/clientRepository');
 
 function creerClient(req, res) {
   try {
