@@ -27,7 +27,7 @@ Il permet de :
 - Persistance simple via JSON
 
 ## Diagramme UML
-![alt text](UML.drawio.png)
+[text](<../../Downloads/uml (1).drawio>)
 
 ## Architecture du projet
 
